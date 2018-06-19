@@ -1,16 +1,24 @@
+import analyze
 import collect
-
+import visualize
+from config import CONFIG
 
 if __name__ == '__main__':
-    #collect
-    collect.crawling_tourspot_visitor(
-        district='서울특별시',
-        start_year=2017,
-        end_year=2017)
+    resultfiles = dict()
 
-    for country in [('중국', 112), ('일본', 130), ('미국', 275)]:
-            collect.crawling_foreign_visitor(country, 2017, 2017)
+    #collect
+    resultfiles['tourspot_visitor'] = collect.crawling_tourspot_visitor(
+        district=CONFIG['district'],
+        **CONFIG['common'])
+
+    resultfiles['foreign_visitor'] = []
+    for country in CONFIG['countries']:
+        rf = collect.crawling_foreign_visitor(country, **CONFIG['common'])
+        resultfiles['foreign_visitor'].append(rf)
 
     #analysis
+    result_analysis = analyze.analysis_correlation(resultfiles)
+    # print(result_analysis)
 
     #visualize
+    visualize.graph_scatter(result_analysis)

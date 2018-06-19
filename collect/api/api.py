@@ -2,20 +2,20 @@
 import math
 from datetime import datetime
 from urllib.parse import urlencode
+import sys
+
 from .web_request import json_request
 
-SERVICE_KEY = '%2FfZdR%2Bue1CSxLEnMkZXa9iDYontLTMTIteD5%2BzYCiMYpDKUZNUh2FHGDQ04zazSEmLl34FClDQk8a7flFCIQKA%3D%3D'
 
-
-def pd_gen_url(endpoint, **param):
-    url = '%s?%s&serviceKey=%s' % (endpoint, urlencode(param), SERVICE_KEY)
+def pd_gen_url(endpoint, service_key, **param):
+    url = '%s?%s&serviceKey=%s' % (endpoint, urlencode(param), service_key)
     return url
 
-
-def pd_fetch_foreign_visitor(country_code, year, month):
+def pd_fetch_foreign_visitor(country_code, year, month, service_key=''):
     endpoint = 'http://openapi.tour.go.kr/openapi/service/EdrcntTourismStatsService/getEdrcntTourismStatsList'
     url = pd_gen_url(
         endpoint,
+        service_key,
         YM='{0:04d}{1:02d}'.format(year, month),
         NAT_CD=country_code,
         ED_CD='E',
@@ -40,7 +40,9 @@ def pd_fetch_tourspot_visitor(
         district2='',
         tourspot='',
         year=0,
-        month=0):
+        month=0,
+        service_key=''
+):
 
     endpoint = 'http://openapi.tour.go.kr/openapi/service/TourismResourceStatsService/getPchrgTrrsrtVisitorList'
     pageno = 1
@@ -55,7 +57,9 @@ def pd_fetch_tourspot_visitor(
             RES_NM=tourspot,
             numOfRows=100,
             _type='json',
-            pageNo=pageno)
+            pageNo=pageno,
+            service_key=service_key
+        )
         json_result = json_request(url=url)
         if json_result is None:
             break

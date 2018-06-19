@@ -1,4 +1,4 @@
-import analysis_pd.collect.api as pdapi
+import collect.api as pdapi
 
 # test for pd_gen_url
 '''
