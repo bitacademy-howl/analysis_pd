@@ -110,6 +110,7 @@ def analysis_correlation_by_tourspot(resultfiles):
 
 # 아래는 상관계수의 구현 코드...(사용해 볼것!) #########################################################################
 def correlation_coefficient(x, y):
+
     n = len(x)
     vals = range(n)
 
