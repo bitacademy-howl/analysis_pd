@@ -1,0 +1,11 @@
+backend      : TkAgg
+font.family         : Malgun Gothic
+
+axes.unicode_minus  : False     ## use unicode for the minus symbol
+xtick.labelsize      : x-small ## fontsize of the tick labels
+ytick.labelsize      : x-small ## fontsize of the tick labels
+
+
+# 설정파일의 위치는
+# D:/Howl_Bit/2. codes/2. Python/A.My/2. BigData/analysis_pd/venv/Lib/site-packages/matplotlib/mpl-data
+# 에 위치하도록
