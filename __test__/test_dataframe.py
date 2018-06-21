@@ -40,8 +40,8 @@ df3 = df2.set_index('name')
 print(df3)
 
 # 컬럼 선택
-s = df2['name']
-print(s, type(s))
+s = df2['name'].get_values().tolist()
+print('컬럼선택 : ', s, type(s))
 
 # merge
 df4 = pd.DataFrame([{'sido' : '서울'}, {'sido' : '부산'}, {'sido' : '전주'}])

@@ -1,1 +1,1 @@
-from .visualizer import graph_scatter
+from .visualizer import graph_scatter, graph_ex_last
